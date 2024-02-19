@@ -1,0 +1,69 @@
+﻿@using Entity.Entities
+@model Entity.Entities.Book
+
+@{
+    ViewData["Title"] = "Update Book";
+    Layout = "~/Views/Shared/_MasterView.cshtml";
+}
+
+<div class="card">
+
+    <div class="card-body">
+
+        <form asp-action="UpdateBook">
+            <fieldset class="mb-3">
+                <legend class="text-uppercase font-size-sm font-weight-bold">Kitap Güncelle</legend>
+
+                <div class="form-group row">
+                    <label class="col-form-label col-lg-2">Kitap Adı</label>
+                    <div class="col-lg-6">
+                        <input asp-for="Title" type="text" class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-form-label col-lg-2">ISBN</label>
+                    <div class="col-lg-6">
+                        <input asp-for="ISBN" type="text" class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-form-label col-lg-2">Basım Yılı</label>
+                    <div class="col-lg-6">
+                        <input asp-for="Year" type="text" class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-form-label col-lg-2">Sayfa Sayısı</label>
+                    <div class="col-lg-6">
+                        <input asp-for="PageCount" type="text" class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-form-label col-lg-2">Yazar</label>
+                    <div class="col-lg-6">
+                        @Html.DropDownList("AuthorId", new SelectList(ViewBag.Authors, "Id", "Name"), "Lütfen Seçiniz", new { @id = "ddlAuthors",@class="form-control" })
+
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-form-label col-lg-2">Kitap Türü</label>
+                    <div class="col-lg-6">
+                        @Html.DropDownList("BookType",new SelectList(ViewBag.BookTypes, "Value", "Text"), "Lütfen kitap türü seçiniz",new { @id = "ddlBookTypes",@class="form-control" })
+                    </div>
+                </div>
+
+
+            </fieldset>
+
+            <div class="text-right">
+                <button type="submit" class="btn btn-dark" style="font-size:larger">Kaydet <i class="icon-floppy-disk ml-2"></i></button>
+            </div>
+        </form>
+    </div>
+</div>
+

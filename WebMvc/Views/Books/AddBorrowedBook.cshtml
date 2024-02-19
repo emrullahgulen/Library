@@ -1,0 +1,49 @@
+﻿@using Entity.Entities
+@model Entity.Entities.Book
+
+@{
+    ViewData["Title"] = "Add Book";
+    Layout = "~/Views/Shared/_MasterView.cshtml";
+}
+
+<div class="card">
+
+    <div class="card-body">
+
+        <form asp-action="AddBorrowedBook">
+            <fieldset class="mb-3">
+                <legend class="text-uppercase font-size-sm font-weight-bold">Ödünç Kitap Ekle</legend>
+
+                <div class="form-group row">
+                    <label class="col-form-label col-lg-2">Kitap Adı</label>
+                    <div class="col-lg-6">
+                        <input asp-for="Title" type="text" class="form-control" disabled>
+                    </div>
+                </div>
+
+               
+
+                <div class="form-group row">
+                    <label class="col-form-label col-lg-2">Üye</label>
+                    <div class="col-lg-6">
+                        @Html.DropDownList("BookedMemberId", new SelectList(ViewBag.Members, "Id", "FullName"), "Lütfen üye seçiniz", new { @id = "ddlMembers",@class="form-control" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-form-label col-lg-2">Rezerve Tarihi</label>
+                    <div class="col-lg-6">
+                        <input asp-for="ReservedDate" type="date" class="form-control">
+                    </div>
+                </div>
+
+
+            </fieldset>
+
+            <div class="text-right">
+                <button type="submit" class="btn btn-dark" style="font-size:larger">Kaydet <i class="icon-floppy-disk ml-2"></i></button>
+            </div>
+        </form>
+    </div>
+</div>
+

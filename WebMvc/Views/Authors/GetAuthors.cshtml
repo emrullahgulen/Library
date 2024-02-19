@@ -1,0 +1,86 @@
+﻿@using Entity.Entities;
+@model List<Author>
+@{
+    ViewData["Title"] = "Get Authors";
+    Layout = "~/Views/Shared/_MasterView.cshtml";
+}
+
+@section Styles
+    {
+    <!-- Theme JS files -->
+    <script src="~/global_assets/js/plugins/tables/datatables/datatables.min.js"></script>
+    <script src="~/global_assets/js/plugins/forms/selects/select2.min.js"></script>
+
+    <script src="~/assets/js/app.js"></script>
+    <script src="~/global_assets/js/demo_pages/datatables_basic.js"></script>
+    <!-- /theme JS files -->
+    <!-- Page header -->
+}
+
+<div class="page-header page-header-light">
+
+</div>
+<!-- /page header -->
+<!-- Basic datatable -->
+<div class="card">
+    <div class="card-header header-elements-inline">
+        <h5 class="card-title">Yazar Listesi</h5>
+        <div class="header-elements">
+            <div class="list-icons">
+                <a class="list-icons-item" data-action="reload"></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-right">
+
+        <a href="@Url.Action("AddAuthor", "Authors")" class="btn btn-primary">
+            <i class="icon-book-plus ml-2"></i>
+            <span>
+                <strong>Yeni Yazar Ekle</strong>
+            </span>
+        </a>
+    </div>
+
+
+    <table class="table datatable-basic">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Adı Soyadı</th>
+                <th>Durumu</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Name</td>
+                    <td>@item.IsActive</td>
+                    <td class="text-center">
+                        <div class="list-icons">
+                            <div class="dropdown">
+                                <a href="#" class="list-icons-item" data-toggle="dropdown">
+                                    <i class="icon-menu9"></i>
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a href="@Url.Action("UpdateAuthor", "Authors",new {Id=item.Id})" class="dropdown-item"><i class="icon-pencil5"></i> Güncelle</a>
+                                    <a href="@Url.Action("DeleteAuthor", "Authors",new {Id=item.Id})" class="dropdown-item"><i class="icon-bin"></i> Sil</a>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+            }
+
+
+
+        </tbody>
+    </table>
+</div>
+<!-- /basic datatable -->

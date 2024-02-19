@@ -1,0 +1,106 @@
+﻿@using Entity.Models;
+@model List<BookListModel>
+@{
+    ViewData["Title"] = "Get Books";
+    Layout = "~/Views/Shared/_MasterView.cshtml";
+}
+
+@section Styles
+    {
+    <!-- Theme JS files -->
+    <script src="~/global_assets/js/plugins/tables/datatables/datatables.min.js"></script>
+    <script src="~/global_assets/js/plugins/forms/selects/select2.min.js"></script>
+
+    <script src="~/assets/js/app.js"></script>
+    <script src="~/global_assets/js/demo_pages/datatables_basic.js"></script>
+    <!-- /theme JS files -->
+    <!-- Page header -->
+}
+
+<div class="page-header page-header-light">
+</div>
+<!-- /page header -->
+<!-- Basic datatable -->
+<div class="card">
+    <div class="card-header header-elements-inline">
+        <h5 class="card-title">Kitap Durum Raporu</h5>
+        <div class="header-elements">
+            <div class="list-icons">
+                <a class="list-icons-item" data-action="reload"></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-right">
+
+        <a href="@Url.Action("AddBook", "Books")" class="btn btn-primary">
+            <i class="icon-book-plus ml-2"></i>
+            <span>
+                <strong>Yeni Kitap Ekle</strong>
+            </span>
+        </a>
+    </div>
+
+
+    <table class="table datatable-basic">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Kitap Adı</th>
+                <th>Yazar</th>
+                <th>Basım Yılı</th>
+                <th>Kitap Türü</th>
+                <td>Ödünç Alan Kişi</td>
+                <th>Rezerve Tarihi</th>
+                <th>Durumu</th>
+                <th class="text-center">İşlem</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Title</td>
+                    <td>@item.AuthorName</td>
+                    <td>@item.Year</td>
+                    <td>@item.BookType</td>
+                    <td>@item.BorrowedMemberName</td>
+                    <td>@item.ReservedDate?.ToString("dd-MM-yyyy")</td>
+                    <td>@item.StatusType</td>
+                    <td class="text-center">
+                        <div class="list-icons">
+                            <div class="dropdown">
+                                <a href="#" class="list-icons-item" data-toggle="dropdown">
+                                    <i class="icon-menu9"></i>
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    @{
+                                        if (item.StatusType == Entity.Enums.BookStatusType.Rafta)
+                                        {
+                                            <a href="@Url.Action("AddBorrowedBook", "Books",new {Id=item.Id})" class="dropdown-item"><i class="icon-pencil5"></i> Ödünç Ver</a>
+                                        }
+                                        else
+                                        {
+                                            <a href="@Url.Action("TakeBackBorrowedBook", "Books",new {Id=item.Id})" class="dropdown-item"><i class="icon-pencil5"></i> Kitabı Geri Al</a>
+                                        }
+
+                                    }
+
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+            }
+
+
+
+        </tbody>
+    </table>
+</div>
+<!-- /basic datatable -->

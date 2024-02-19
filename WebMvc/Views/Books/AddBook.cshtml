@@ -1,0 +1,129 @@
+﻿@using Entity.Entities
+@model Entity.Entities.Book
+
+@{
+    ViewData["Title"] = "Add Book";
+    Layout = "~/Views/Shared/_MasterView.cshtml";
+}
+@* <script src="~/global_assets/js/plugins/loaders/blockui.min.js"></script>
+<!-- /core JS files -->
+<!-- Theme JS files -->
+<script src="~/global_assets/js/plugins/uploaders/fileinput/plugins/purify.min.js"></script>
+<script src="~/global_assets/js/plugins/uploaders/fileinput/plugins/sortable.min.js"></script>
+<script src="~/global_assets/js/plugins/uploaders/fileinput/fileinput.min.js"></script> *@
+
+@section HeaderScripts{
+    <!-- Global stylesheets -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+    <link href="~/global_assets/css/icons/icomoon/styles.min.css" rel="stylesheet" type="text/css">
+    <link href="~/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="~/assets/css/bootstrap_limitless.min.css" rel="stylesheet" type="text/css">
+    <link href="~/assets/css/layout.min.css" rel="stylesheet" type="text/css">
+    <link href="~/assets/css/components.min.css" rel="stylesheet" type="text/css">
+    <link href="~/assets/css/colors.min.css" rel="stylesheet" type="text/css">
+    <!-- /global stylesheets -->
+    <!-- Core JS files -->
+    <script src="~/global_assets/js/main/jquery.min.js"></script>
+    <script src="~/global_assets/js/main/bootstrap.bundle.min.js"></script>
+    <script src="~/global_assets/js/plugins/loaders/blockui.min.js"></script>
+    <!-- /core JS files -->
+    <!-- Theme JS files -->
+    <script src="~/global_assets/js/plugins/uploaders/fileinput/plugins/purify.min.js"></script>
+    <script src="~/global_assets/js/plugins/uploaders/fileinput/plugins/sortable.min.js"></script>
+    <script src="~/global_assets/js/plugins/uploaders/fileinput/fileinput.min.js"></script>
+
+    <script src="~/assets/js/app.js"></script>
+    <script src="~/global_assets/js/demo_pages/uploader_bootstrap.js"></script>
+    <!-- /theme JS files -->
+}
+
+
+<div class="card">
+
+    <div class="card-body">
+
+        <form asp-action="AddBook" method="post" enctype="multipart/form-data">
+            <fieldset class="mb-3">
+                <legend class="text-uppercase font-size-sm font-weight-bold">Yeni Kitap Ekle</legend>
+
+                <div class="form-group row">
+                    <label class="col-form-label col-lg-2">Kitap Adı</label>
+                    <div class="col-lg-6">
+                        <input asp-for="Title" type="text" class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-form-label col-lg-2">ISBN</label>
+                    <div class="col-lg-6">
+                        <input asp-for="ISBN" type="text" class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-form-label col-lg-2">Basım Yılı</label>
+                    <div class="col-lg-6">
+                        <input asp-for="Year" type="text" class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-form-label col-lg-2">Sayfa Sayısı</label>
+                    <div class="col-lg-6">
+                        <input asp-for="PageCount" type="text" class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-form-label col-lg-2">Yazar</label>
+                    <div class="col-lg-6">
+                        @Html.DropDownList("AuthorId", new SelectList(ViewBag.Authors, "Id", "Name"), "Lütfen yazar seçiniz", new { @id = "ddlAuthors",@class="form-control" })
+
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-form-label col-lg-2">Kitap Türü</label>
+                    <div class="col-lg-6">
+                        @Html.DropDownList("BookType",new SelectList(ViewBag.BookTypes, "Value", "Text"), "Lütfen kitap türü seçiniz",new { @id = "ddlBookTypes",@class="form-control" })
+                    </div>
+                </div>
+@* 
+                <div class="form-group row">
+                    <label class="col-lg-2 col-form-label font-weight-semibold">Resim:</label>
+                    <div class="col-lg-6">
+                        <input type="file" class="file-input" id="UploadfileTmp" onchange="UploadfileOnChange()" data-fouc>
+                        <input asp-for="PictureUrl" id="Uploadfile" type="text" class="form-control" hidden">
+                    </div>
+                </div> *@
+
+
+
+            </fieldset>
+
+            <div class="text-right">
+                <button type="submit" class="btn btn-dark" style="font-size:larger">Kaydet <i class="icon-floppy-disk ml-2"></i></button>
+            </div>
+        </form>
+
+@*         <form id="fileUploadForm" action="@Url.Action("UploadFile", "Books")" method="post" enctype="multipart/form-data">
+
+        </form> *@
+    </div>
+</div>
+
+<script>
+
+    function UploadfileOnChange() {
+
+        var _UploadfileTmp = document.getElementById("UploadfileTmp").value;
+        console.log(_UploadfileTmp);
+        // if (_UploadfileTmp.value != "") {
+        //        // Model.PictureUrl=document.getElementById("UploadfileTmp").value.split('\\').pop();        
+        // }
+        // document.getElementById("Uploadfile").value = document.getElementById("UploadfileTmp").value.split('\\').pop();
+        // console.log(document.getElementById("Uploadfile").value.split('\\').pop());
+    }
+
+</script>
+
