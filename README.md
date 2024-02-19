@@ -2,6 +2,6 @@
 - EntityFramework kullanılmıştır.
 - Solid prensipleri dikkate alınmıştır.
 - Serilog kullanılmıştır.
-- IOC olarak Autofac kullanılmıştır.
+- Autofac kullanılmıştır.
 - webApi katmanındaki SqlConnection bilgisi değiştirilmelidir.
 - LibraryDBSqlScripts dosyası ile mssql database kurulabilir
