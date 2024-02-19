@@ -4,3 +4,4 @@
 - Serilog kullanılmıştır.
 - IOC olarak Autofac kullanılmıştır.
 - webApi katmanındaki SqlConnection bilgisi değiştirilmelidir.
+- LibraryDBSqlScripts dosyası ile mssql database kurulabilir
