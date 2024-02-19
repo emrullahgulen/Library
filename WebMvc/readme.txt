@@ -1,0 +1,6 @@
+- .net 7.0 ile yazılmıştır.
+- EntityFramework kullanılmıştır.
+- Solid prensipleri dikkate alınmıştır.
+- Serilog kullanılmıştır.
+- IOC olarak Autofac kullanılmıştır.
+- webApi katmanındaki SqlConnection bilgisi değiştirilmelidir.
